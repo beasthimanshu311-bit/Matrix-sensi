@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pay Securely</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        body {
+            background-color: #1c2128;
+            color: white;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            border-bottom: 1px solid #30363d;
+        }
+        .header span {
+            margin-right: 15px;
+            cursor: pointer;
+        }
+        .pay-summary {
+            background-color: #22272e;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            color: #44b361; /* Green color similar to screenshot */
+        }
+        .subtext {
+            color: #8b949e;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .payment-options {
+            border-top: 1px solid #30363d;
+        }
+        .option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #30363d;
+            cursor: pointer;
+        }
+        .qr-section {
+            display: none; /* Default hidden */
+            text-align: center;
+            padding: 20px;
+            background: #fff;
+            margin: 0 20px 20px;
+            border-radius: 8px;
+        }
+        .qr-section img {
+            width: 200px;
+            height: 200px;
+        }
+        .qr-section p {
+            color: #000;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .info-footer {
+            padding: 20px;
+            color: #8b949e;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <span onclick="window.history.back()">←</span> Pay Securely
+    </div>
+
+    <div class="pay-summary">
+        <div class="row">
+            <span>Pay Today</span>
+            <span id="price-display">₹--</span>
+        </div>
+        <div class="subtext">
+            Matrix Sensi Pack
+        </div>
+    </div>
+
+    <div class="payment-options">
+        <div class="option" onclick="toggleQR()">
+            <span>UPI / Show QR Code</span>
+            <span>▼</span>
+        </div>
+        
+        <!-- YAHAN APNA ASLI QR CODE IMAGE DAALEN -->
+        <div class="qr-section" id="qrCode">
+            <img src="Qr.jpg" alt="Scan to Pay">
+            <p>Scan with PhonePe, Paytm, or GPay</p>
+            <p style="font-size: 12px; color: #555; margin-top: 5px;">After payment, send screenshot on Discord/WhatsApp to get access.</p>
+        </div>
+
+        <div class="option">
+            <span>Google Play</span>
+            <span>></span>
+        </div>
+    </div>
+
+    <div class="info-footer">
+        Secure payments accepted globally. Your transaction is encrypted.
+    </div>
+
+    <script>
+        // URL se price fetch karke update karne ka logic
+        const urlParams = new URLSearchParams(window.location.search);
+        const price = urlParams.get('price');
+        if (price) {
+            document.getElementById('price-display').innerText = `₹${price}`;
+        }
+
+        // QR Code Show/Hide Logic
+        function toggleQR() {
+            var qr = document.getElementById("qrCode");
+            if (qr.style.display === "block") {
+                qr.style.display = "none";
+            } else {
+                qr.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
+ 
